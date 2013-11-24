@@ -17,6 +17,6 @@
 	},
 
 	"autoload": {
-		"psr-0": { "Forager": "." }
+		"psr-0": { "Yandex": "src/" }
 	}
 }
