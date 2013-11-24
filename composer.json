@@ -1,0 +1,22 @@
+{
+	"name": "boo1ean/yandex-speller",
+	"homepage": "https://github.com/boo1ean/yandex-speller",
+	"description": "Wrapper for Yandex Speller API",
+	"keywords": ["yandex", "api", "spellcheck", "speller"],
+	"license": "MIT",
+
+	"authors": [
+		{
+			"name": "Egor Gumenyuk",
+			"email": "boo1ean0807@gmail.com"
+		}
+	],
+
+	"require": {
+		"guzzle/guzzle": "dev-master"
+	},
+
+	"autoload": {
+		"psr-0": { "Forager": "." }
+	}
+}
