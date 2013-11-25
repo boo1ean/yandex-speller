@@ -29,16 +29,16 @@ class Speller
 	/**
 	 * Check text
 	 *
-	 * @param mixed $text
+	 * @param mixed $texts
 	 * @param array $options
 	 * @return array
 	 */
-	public function check($text, $options = array()) {
-		if (is_array($text)) {
-			throw new \ErrorException('Sorry, array support does not implemented yet :)');
+	public function check($texts, $options = array()) {
+		if (is_array($texts)) {
+			return $this->checkTexts($texts);
 		}
 
-		return $this->checkText($text, $options);
+		return $this->checkText($texts, $options);
 	}
 
 	/**
@@ -48,8 +48,29 @@ class Speller
 	 * @param array $options
 	 * @return array
 	 */
-	public function checkText($text, $options = array()) {
+	public function checkText($text, array $options = array()) {
 		$url = static::API_ENDPOINT . static::METHOD_CHECK_TEXT . '?text=' . $text;
+		return $this->getJSON($url);
+	}
+
+	/**
+	 * Check given list of texts
+	 * @param array $texts
+	 * @param array $options
+	 * @return array
+	 */
+	public function checkTexts(array $texts, array $options = array()) {
+		$texts = implode('&text=', $texts);
+		$url   = static::API_ENDPOINT . static::METHOD_CHECK_TEXTS . '?text=' . $texts;
+		return $this->getJSON($url);
+	}
+
+	/**
+	 * Get JSON using HTTP GET method
+	 * @param string $url
+	 * @return array decoded json response
+	 */
+	protected function getJSON($url) {
 		return $this->adapter->get($url)->send()->json();
 	}
 
